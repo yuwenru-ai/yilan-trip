@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜蘭兩天一夜｜初次同行的旅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c2c2c;
+    --soft: #6b7c6e;
+    --muted: #9aaa9d;
+    --cream: #f9f7f3;
+    --paper: #fffef9;
+    --moss: #7d9b7e;
+    --sage: #b8cebc;
+    --pale: #e8f0ea;
+    --accent: #c0a882;
+    --warm: #f2ede6;
+    --line-light: rgba(44,44,44,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--cream);
+    overflow: hidden;
+    padding: 60px 24px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 20%, rgba(184,206,188,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 10% 80%, rgba(192,168,130,0.18) 0%, transparent 55%);
+  }
+
+  .hero-deco {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+
+  .hero-deco::before {
+    content: '宜 蘭';
+    position: absolute;
+    top: 10%;
+    right: 8%;
+    writing-mode: vertical-rl;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 5rem;
+    color: rgba(125,155,126,0.10);
+    letter-spacing: 0.3em;
+    line-height: 1;
+  }
+
+  .hero-deco::after {
+    content: '';
+    position: absolute;
+    bottom: 18%;
+    left: 6%;
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--moss), transparent);
+    opacity: 0.4;
+  }
+
+  .hero-tag {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    color: var(--moss);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    position: relative;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag::before, .hero-tag::after {
+    content: '―';
+    margin: 0 12px;
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 500;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: fadeUp 0.9s ease 0.1s both;
+  }
+
+  .hero-title span { color: var(--moss); }
+
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 0.95rem;
+    color: var(--soft);
+    letter-spacing: 0.15em;
+    text-align: center;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero-date {
+    margin-top: 40px;
+    display: flex;
+    gap: 32px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .hero-date-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-date-item .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .hero-date-item .value {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+
+  .divider-dot {
+    display: flex;
+    align-items: center;
+    color: var(--sage);
+    font-size: 1.5rem;
+    margin-top: 8px;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    animation: fadeUp 1.2s ease 0.5s both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollAnim 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollAnim {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 28px;
+  }
+
+  .section-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--moss);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  .highlights-section {
+    background: var(--pale);
+    padding: 80px 0;
+  }
+
+  .highlights-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .highlight-card {
+    background: var(--paper);
+    border-radius: 2px;
+    padding: 32px 28px;
+    border-top: 2px solid var(--moss);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  }
+
+  .highlight-icon { font-size: 1.6rem; margin-bottom: 14px; }
+
+  .highlight-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .highlight-desc { font-size: 0.85rem; color: var(--soft); line-height: 1.7; }
+
+  .day-block { margin-bottom: 56px; }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .day-badge {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.85rem;
+    color: var(--paper);
+    background: var(--moss);
+    padding: 6px 18px;
+    letter-spacing: 0.15em;
+  }
+
+  .day-date { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; }
+
+  .timeline { position: relative; padding-left: 28px; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--sage), transparent);
+  }
+
+  .timeline-item { position: relative; padding-bottom: 28px; padding-left: 24px; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--sage);
+  }
+
+  .timeline-time { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 4px; }
+
+  .timeline-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .timeline-desc { font-size: 0.85rem; color: var(--soft); line-height: 1.6; }
+
+  .timeline-tag {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--moss);
+    background: var(--pale);
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+
+  .day-tbd {
+    background: var(--warm);
+    border-radius: 2px;
+    padding: 32px;
+    text-align: center;
+    border: 1px dashed var(--accent);
+  }
+
+  .day-tbd .tbd-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .day-tbd .tbd-desc { font-size: 0.85rem; color: var(--soft); }
+
+  .transport-section { background: var(--ink); padding: 80px 0; }
+
+  .transport-inner { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+  .transport-inner .section-label { color: var(--sage); }
+  .transport-inner .section-label::after { background: rgba(184,206,188,0.3); }
+  .transport-inner .section-title { color: var(--cream); }
+
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .transport-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 28px 24px;
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+
+  .transport-card:hover { border-color: rgba(184,206,188,0.4); }
+  .transport-card .t-icon { font-size: 1.4rem; margin-bottom: 12px; }
+
+  .transport-card .t-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.95rem;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .transport-card .t-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+  .food-category-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.1em;
+    margin: 36px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--sage);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .food-category-label:first-of-type { margin-top: 0; }
+
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .food-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--warm);
+    padding: 28px 24px;
+    transition: transform 0.3s;
+  }
+
+  .food-card:hover { transform: translateY(-3px); }
+
+  .food-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .food-card:hover::after { transform: scaleX(1); }
+
+  .food-icon { font-size: 1.4rem; margin-bottom: 10px; }
+
+  .food-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .food-loc { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 8px; }
+  .food-desc { font-size: 0.83rem; color: var(--soft); line-height: 1.65; }
+
+  .food-meta {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line-light);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .food-meta-row {
+    display: flex;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .food-meta-row .meta-icon { flex-shrink: 0; color: var(--moss); }
+
+  .notes-section { background: var(--pale); padding: 80px 0; }
+  .notes-inner { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+  .notes-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .notes-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--paper);
+    padding: 20px;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: var(--soft);
+    line-height: 1.65;
+  }
+
+  .notes-list li .n-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+
+  .host-notes-card {
+    margin-top: 28px;
+    background: var(--paper);
+    border-radius: 2px;
+    border: 1px solid var(--sage);
+    overflow: hidden;
+  }
+
+  .host-notes-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--moss);
+    color: var(--paper);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    padding: 12px 20px;
+  }
+
+  .host-notes-icon { font-size: 1rem; }
+
+  .host-notes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .host-notes-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 20px;
+    font-size: 0.85rem;
+    color: var(--soft);
+    line-height: 1.65;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .host-notes-list li:first-child { border-top: none; }
+
+  .host-notes-list li .n-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+
+  footer {
+    text-align: center;
+    padding: 56px 28px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    border-top: 1px solid var(--line-light);
+  }
+
+  footer .f-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .hero-deco::before { display: none; }
+    .highlights-grid, .transport-grid, .food-grid { grid-template-columns: 1fr; }
+  }
+
+  .scroll-to-food {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: #d4845a;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(212,132,90,0.4);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .rec-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: #a05c1a;
+    background: #fdf0e0;
+    border: 1px solid #f0c98a;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .scroll-to-food:hover {
+    background: #b96d45;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(212,132,90,0.5);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-deco"></div>
+  <div class="hero-tag">Yilan · 2 Days 1 Night</div>
+  <h1 class="hero-title">宜蘭，<br><span>初次同行</span>的旅</h1>
+  <p class="hero-sub">兩天一夜・自由行・春日限定</p>
+  <div class="hero-date">
+    <div class="hero-date-item">
+      <span class="label">Day 01</span>
+      <span class="value">4月3日 　星期五</span>
+    </div>
+    <div class="divider-dot">·</div>
+    <div class="hero-date-item">
+      <span class="label">Day 02</span>
+      <span class="value">4月4日 　星期六</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<div class="highlights-section">
+  <div class="highlights-inner">
+    <div class="section-label">Highlights</div>
+    <h2 class="section-title">✨ 行程亮點</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">🚉</div>
+        <div class="highlight-name">輕鬆集合</div>
+        <div class="highlight-desc">羅東車站會合，交通便利。</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🍡</div>
+        <div class="highlight-name">在地小吃</div>
+        <div class="highlight-desc">從銅板美食到質感餐廳一次滿足。</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">♨️</div>
+        <div class="highlight-name">礁溪放鬆</div>
+        <div class="highlight-desc">溫泉小鎮散步＋茶屋療癒時光。</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🌙</div>
+        <div class="highlight-name">夜晚時光</div>
+        <div class="highlight-desc">羅東夜生活＋宵夜小確幸。</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🌧️</div>
+        <div class="highlight-name">下雨也沒關係</div>
+        <div class="highlight-desc">待在民宿放鬆聊天，旅行一樣有溫度。</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">💛</div>
+        <div class="highlight-name">不趕行程</div>
+        <div class="highlight-desc">保留彈性，享受「一起決定」的過程。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="section-label">Itinerary</div>
+  <h2 class="section-title">每日行程安排</h2>
+
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-badge">Day 01</span>
+      <span class="day-date">4月3日 星期五</span>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">11:00 抵達</div>
+        <div class="timeline-title">羅東車站集合</div>
+        <div class="timeline-desc">各自從台北搭乘區間快車，在羅東站月台會合，先把行李放到住宿，輕裝出發。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=羅東火車站" target="_blank">📍 羅東火車站 ↗</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">中午 墊胃</div>
+        <div class="timeline-title">羅東小吃初體驗</div>
+        <div class="timeline-desc">行李放好後，先去附近嗑幾樣羅東名物，蔥油餅、控肉飯，邊吃邊認識一下這座城市。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=羅東市區" target="_blank">🍜 羅東市區 ↗</a>
+        <a class="scroll-to-food" href="#food-section">🍴 參考美食推薦 ↓</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">下午 漫步</div>
+        <div class="timeline-title">礁溪溫泉街閒逛</div>
+        <div class="timeline-desc">搭計程車前往礁溪，街上有溫泉足浴、特色小店，也可以買點伴手禮，感受宜蘭的悠閒步調。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=礁溪溫泉區" target="_blank">♨️ 礁溪溫泉區 ↗</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">14:05 預約</div>
+        <div class="timeline-title">日光山茶屋</div>
+        <div class="timeline-desc">隱身山腰的預約制茶屋，提供日式抹茶與點心套餐，在竹林與山景之間，靜靜地喝一杯茶。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=Nikko+Hill+Tea+House+日光山茶屋+礁溪" target="_blank">🍵 日光山茶屋 Nikko Hill Tea House ↗</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">傍晚 晚餐</div>
+        <div class="timeline-title">里海咖啡用餐</div>
+        <div class="timeline-desc">面向太平洋的景觀餐廳，黃昏時刻光線最美。餐點以義式料理為主，海景下慢慢吃，慢慢聊。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=宜蘭縣礁溪鄉玉龍路二段406號" target="_blank">🌅 里海咖啡 ↗</a>
+        <a class="scroll-to-food" href="#food-section">🍽️ 其他備案餐廳 ↓</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">夜晚</div>
+        <div class="timeline-title">依之園 Check in ＆ 路邊烤肉宵夜</div>
+        <div class="timeline-desc">回到依之園辦理入住，休息一下後出門找宵夜。路邊烤肉攤、燒烤串，配上冷飲，第一天就這樣完美收尾。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=路邊烤肉+羅東" target="_blank">🍢 路邊烤肉 ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-badge">Day 02</span>
+      <span class="day-date">4月4日 星期六</span>
+    </div>
+    <div class="day-tbd">
+      <div class="tbd-title">✦ 自由探索日 ✦</div>
+      <div class="tbd-desc">行程尚待確認，保留彈性空間。<br>
+      也許是南方澳港口、冬山河，或者只是在咖啡館裡發呆——<br>跟著當下的心情走，才是最好的旅行方式。</div>
+    </div>
+    <div class="timeline" style="margin-top: 28px;">
+      <div class="timeline-item">
+        <div class="timeline-time">06:30–11:00</div>
+        <div class="timeline-title">微暖米朵 Weinuan Mito</div>
+        <div class="timeline-desc">民宿合作早餐店，出發前記得先吃飽再上路。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=微暖米朵+羅東" target="_blank">🍳 早餐・民宿配合店家 ↗</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">下午 出發前</div>
+        <div class="timeline-title">伴手禮採購</div>
+        <div class="timeline-desc">搭車前在羅東或礁溪逛一圈，帶點宜蘭特產回去——牛舌餅、金棗糕、蜂蜜蛋糕、奶凍捲都是口碑選擇。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=羅東伴手禮" target="_blank">🎁 羅東市區 ↗</a>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">15:37 出發</div>
+        <div class="timeline-title">自強 177 回中壢</div>
+        <div class="timeline-desc">記得提前到羅東車站候車，宜蘭假日人潮多，留點餘裕。</div>
+        <a class="timeline-tag" href="https://maps.google.com/?q=羅東火車站" target="_blank">🚂 羅東火車站・自強號 177 ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="transport-section">
+  <div class="transport-inner">
+    <div class="section-label">Transport</div>
+    <h2 class="section-title" style="color:var(--cream)">交通建議</h2>
+    <div class="transport-grid">
+      <div class="transport-card">
+        <div class="t-icon">🚂</div>
+        <div class="t-title">台北 → 羅東</div>
+        <div class="t-desc">搭乘台鐵區間快至羅東站，約 90 分鐘。建議提早訂票，假日班次較擁擠。</div>
+      </div>
+      <div class="transport-card">
+        <div class="t-icon">🚕</div>
+        <div class="t-title">礁溪・山區移動</div>
+        <div class="t-desc">羅東到礁溪約 10 分鐘車程，日光山茶屋位於山區，建議直接叫計程車前往。</div>
+      </div>
+      <div class="transport-card">
+        <div class="t-icon">🛵</div>
+        <div class="t-title">達伯租車（民宿合作）</div>
+        <div class="t-desc">民宿合作的在地租車服務，可透過依之園洽詢預約，靈活探索宜蘭各景點。</div>
+      </div>
+      <div class="transport-card">
+        <div class="t-icon">🏍️</div>
+        <div class="t-title">宜蘭在地漫遊</div>
+        <div class="t-desc">若想靈活探索，可在羅東或礁溪租借電動機車，自由穿梭各景點之間。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="food-section">
+  <div class="section-label">Food & Drink</div>
+  <h2 class="section-title">美食推薦清單</h2>
+
+  <div class="food-category-label">🍮 甜點</div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="food-icon">🍧</div>
+      <div class="food-name">小龜有 Kaki Gori</div>
+      <div class="food-loc">宜蘭市・日式刨冰</div>
+      <div class="food-desc">宜蘭車站步行2分鐘，抹茶控必訪！以小山園抹茶為靈魂，刨冰綿密不化水。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣宜蘭市康樂路29號" target="_blank" style="color:var(--moss)">宜蘭縣宜蘭市康樂路29號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>11:00–18:30，週二、三公休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>03-932-7335</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🫙</div>
+      <div class="food-name">冷白粉圓</div>
+      <div class="food-loc">宜蘭市・古早味甜品</div>
+      <div class="food-desc">開業超過60年的城隍廟口老攤，手工白粉圓加古早糖水，一杯只要30元。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣宜蘭市城隍街1號" target="_blank" style="color:var(--moss)">宜蘭縣宜蘭市城隍街1號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>08:00–17:00，全週開放</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>03-936-2562</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🚂</div>
+      <div class="food-name">鬥伙駅・大洲車站</div>
+      <div class="food-loc">三星・百年老車站咖啡館</div>
+      <div class="food-desc">廢棄森林鐵路大洲老車站活化而成，木造車站空間保留完整，提供甜點與手沖咖啡。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣三星鄉大洲村五分路二段192號" target="_blank" style="color:var(--moss)">宜蘭縣三星鄉大洲村五分路二段192號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>營業時間不固定，請以官方IG公告為主</span></div>
+        <div class="food-meta-row"><span class="meta-icon">💳</span><span>建議備現金</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-category-label">☕ 咖啡廳</div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="food-icon">🍵</div>
+      <div class="food-name">日光山茶屋</div>
+      <div class="food-loc">礁溪・田野茶屋・需預約</div>
+      <div class="food-desc">日式禪風獨棟茶屋，提供普洱、烏龍、紅茶等品茗套餐，每人低消 $300，品茶限時3小時。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=Nikko+Hill+Tea+House+日光山茶屋+礁溪" target="_blank" style="color:var(--moss)">宜蘭縣礁溪鄉興農路322巷6號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>09:00–18:00，全年無休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>03-987-5139</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🌿</div>
+      <div class="food-name">見野 NIWA</div>
+      <div class="food-loc">員山・老宅日式庭園</div>
+      <div class="food-desc">紅磚老屋改建，有精心雕琢的日式竹林庭院，僅週六日營業，假日一位難求。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣員山鄉大湖路19號" target="_blank" style="color:var(--moss)">宜蘭縣員山鄉大湖路19號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>11:30–17:30，僅週六、日營業</span></div>
+        <div class="food-meta-row"><span class="meta-icon">💳</span><span>建議私訊IG/FB訂位</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🚃</div>
+      <div class="food-name">捌㡯珈琲</div>
+      <div class="food-loc">頭城・鐵道旁日式木屋</div>
+      <div class="food-desc">日式低調老宅，後方緊鄰鐵道，坐在窗邊可看火車穿越而過，手沖咖啡與手作甜點皆有水準。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣頭城鎮青雲路二段650號" target="_blank" style="color:var(--moss)">宜蘭縣頭城鎮青雲路二段650號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>平日 11:30–17:00、假日 10:00–18:00，週一公休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>0966-750-448</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-category-label">🥢 小吃</div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="food-icon">🧅</div>
+      <div class="food-name">柯氏蔥油餅</div>
+      <div class="food-loc">礁溪・50年老店排隊名物</div>
+      <div class="food-desc">開業超過50年的礁溪蔥油餅始祖，豬油半煎炸、外酥Q彈，三種獨門沾醬是加分關鍵。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣礁溪鄉礁溪路四段128號" target="_blank" style="color:var(--moss)">宜蘭縣礁溪鄉礁溪路四段128號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>09:00–18:00，週三公休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">💳</span><span>現金，無電話訂餐，現場排隊</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🍜</div>
+      <div class="food-name">阿灶伯羊肉湯</div>
+      <div class="food-loc">羅東・在地老字號</div>
+      <div class="food-desc">羅東在地當歸羊肉湯名店，湯頭清甜不膻，羊肉片量給得很足，宵夜前墊一碗剛剛好。</div>
+      <span class="rec-tag">⭐ 佩佩朋友推薦</span>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣羅東鎮民權路265號" target="_blank" style="color:var(--moss)">宜蘭縣羅東鎮民權路265號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>16:00–01:00，週三公休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">💳</span><span>建議備現金</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🍢</div>
+      <div class="food-name">路邊烤肉宵夜</div>
+      <div class="food-loc">羅東・夜間小攤</div>
+      <div class="food-desc">小攤桌、串燒、冷飲，邊烤邊聊，是這趟初次同行最放鬆的完美收尾方式。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=羅東夜市+公正路" target="_blank" style="color:var(--moss)">羅東夜市周邊（公正路一帶）↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>約 18:00 後至深夜</span></div>
+        <div class="food-meta-row"><span class="meta-icon">💳</span><span>現金為主</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-category-label">🍽️ 餐廳</div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="food-icon">🐟</div>
+      <div class="food-name">里海咖啡</div>
+      <div class="food-loc">礁溪・每日限定鮮魚定食</div>
+      <div class="food-desc">漁港直送鮮魚，醬燒或鹽烤任選，菜單依當日漁獲而定，強烈建議提前訂位。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣礁溪鄉玉龍路二段406號" target="_blank" style="color:var(--moss)">宜蘭縣礁溪鄉玉龍路二段406號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>11:30–16:00、17:30–20:30，週三公休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>03-987-1213</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🎣</div>
+      <div class="food-name">二漁咖啡</div>
+      <div class="food-loc">冬山・老宅鮮魚定食</div>
+      <div class="food-desc">大溪漁港每日直送鮮魚，隱身冬山鄉間老宅，鮮魚限量採預約制，套餐附四道小菜超有誠意。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣冬山鄉大進七路128號" target="_blank" style="color:var(--moss)">宜蘭縣冬山鄉大進七路128號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>平日 11:00–17:00、假日 11:00–19:30，週二、三公休</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>03-951-2777</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🐑</div>
+      <div class="food-name">古記越式羊肉爐</div>
+      <div class="food-loc">宜蘭市・在地炭燒老店</div>
+      <div class="food-desc">宜蘭市人氣 NO.1 的炭燒羊肉爐老店，特製醬料是絕配，晚餐時段人潮洶湧。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=宜蘭縣宜蘭市舊城北路113號" target="_blank" style="color:var(--moss)">宜蘭縣宜蘭市舊城北路113號 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>16:00–02:00，全週開放</span></div>
+        <div class="food-meta-row"><span class="meta-icon">📞</span><span>03-932-4982</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🍚</div>
+      <div class="food-name">陋室銘神粥府</div>
+      <div class="food-loc">礁溪・森林老宅砂鍋粥</div>
+      <div class="food-desc">座落礁溪溫泉公園森林中的閩式百年老宅，預約制用餐，浮誇砂鍋粥是視覺與味覺的雙重饗宴。</div>
+      <div class="food-meta">
+        <div class="food-meta-row"><span class="meta-icon">📍</span><a href="https://maps.google.com/?q=礁溪溫泉公園+陋室銘神粥府" target="_blank" style="color:var(--moss)">礁溪溫泉公園森林風呂旁 ↗</a></div>
+        <div class="food-meta-row"><span class="meta-icon">🕘</span><span>純預約制，請事先電話訂位確認時段</span></div>
+        <div class="food-meta-row"><span class="meta-icon">💳</span><span>訂位時需支付訂金</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="notes-section">
+  <div class="notes-inner">
+    <div class="section-label">Notes</div>
+    <h2 class="section-title">出發前注意事項</h2>
+    <ul class="notes-list">
+      <li><span class="n-icon">🌧️</span><span>宜蘭雨量豐沛，<strong>請備妥雨具</strong>，折疊傘即可，不影響行程但能防患未然。</span></li>
+      <li><span class="n-icon">💳</span><span>部分小吃攤及路邊攤<strong>只收現金</strong>，建議隨身備好現鈔，避免無法付款的尷尬。</span></li>
+      <li><span class="n-icon">🎒</span><span>從台北出發<strong>行李不宜過大</strong>，搭區間車站站停，輕便行李會讓移動更輕鬆愉快。</span></li>
+      <li><span class="n-icon">🤝</span><span>這是第一次同行，<strong>保留彈性空間</strong>，不趕行程、隨時溝通，旅行就會自然而然地美好。</span></li>
+    </ul>
+
+    <div class="host-notes-card">
+      <div class="host-notes-header">
+        <span class="host-notes-icon">🏠</span>
+        依之園・民宿提醒事項
+      </div>
+      <ul class="host-notes-list">
+        <li><span class="n-icon">🪥</span><span>民宿<strong>不提供牙刷</strong>，請記得自備。毛巾、沐浴乳（洗髮沐浴二合一）民宿有提供。</span></li>
+        <li><span class="n-icon">💧</span><span>民宿無水塔，水壓靠 1 樓馬達供應至 4 樓，<strong>洗手台與馬桶的水需等 30 秒至 1 分鐘才會變大</strong>，上洗手間建議間隔一下再使用，民宿有備水桶。</span></li>
+        <li><span class="n-icon">🔑</span><span>當天民宿會直接傳<strong>密碼</strong>給你們自行進入，房費請協助轉帳給民宿。</span></li>
+        <li><span class="n-icon">🍳</span><span>民宿<strong>無提供早餐</strong>，需自行前往附近早午餐店，配合時間為 6:30–11:00。</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-title">宜蘭兩天一夜・初次同行</div>
+  <div>Spring 2025 ・ Yilan, Taiwan</div>
+  <div style="margin-top:16px; font-size:0.72rem; opacity:0.6;">好的旅伴，讓普通的地方也變得特別。</div>
+</footer>
+
+</body>
+</html>
